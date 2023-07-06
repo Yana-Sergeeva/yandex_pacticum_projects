@@ -1,4 +1,4 @@
-1. Посчитайте, сколько компаний закрылось.
+**1. Посчитайте, сколько компаний закрылось.**
 
 SELECT COUNT(status)
 FROM company
@@ -13,3 +13,21 @@ WHERE country_code = 'USA'
       AND category_code = 'news'
 GROUP BY name
 ORDER BY funding_total DESC;
+
+3. Найдите общую сумму сделок по покупке одних компаний другими в долларах.
+Отберите сделки, которые осуществлялись только за наличные с 2011 по 2013 год включительно.
+
+SELECT SUM(price_amount)
+FROM acquisition
+WHERE term_code = 'cash'
+      AND EXTRACT (YEAR FROM acquired_at) IN (2011, 2012, 2013)
+
+4. Отобразите имя, фамилию и названия аккаунтов людей в твиттере, у которых названия аккаунтов начинаются на 'Silver'.
+
+SELECT first_name,
+       last_name,
+       twitter_username
+FROM people
+WHERE twitter_username LIKE 'Silver%';
+
+
